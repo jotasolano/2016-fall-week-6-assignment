@@ -1,3 +1,7 @@
-.axis .tick line{
-    stroke: white;
+.axis-y>.domain{
+	stroke: #fff;
+}
+
+.axis-y .tick line {
+	stroke: #fff;
 }
