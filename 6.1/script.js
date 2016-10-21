@@ -47,6 +47,10 @@ d3.csv('../data/olympic_medal_count.csv', parse, function(error, rows) {
 		.range(d3.range(0, w, w/top5.length));
 		// console.log(scaleX("China"));
 
+	var color = d3.scaleOrdinal()
+		.domain(top5.map(function (d) { return d.country;}))
+		.range(['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99']);
+
 
 	// ---- ---- BAR CHART ---- ----
 	var bar = plot.selectAll('rect')
@@ -57,7 +61,8 @@ d3.csv('../data/olympic_medal_count.csv', parse, function(error, rows) {
 		.attr('height', function(d,i){ return h - scaleY(d.y2012); })
 		.attr('x', function(d,i){ return scaleX(d.country); })
 		.attr('y', function(d) { return scaleY(d.y2012); })
-		.style('fill-opacity', 0.75)
+		// .style('fill-opacity', 0.75)
+		.style('fill', function(d) { return color(d.country); })
 		.attr('transform','translate(50,0)');
 
 
